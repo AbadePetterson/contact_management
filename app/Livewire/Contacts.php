@@ -10,6 +10,8 @@ class Contacts extends Component
 {
     public $contacts;
     public $search = '';
+    public $showConfirmDelete = false;
+    public $contactToDelete = null;
 
     public function mount()
     {
@@ -25,6 +27,28 @@ class Contacts extends Component
     public function updatedSearch()
     {
         $this->updateContacts();
+    }
+
+    public function confirmDelete($id)
+    {
+        $this->contactToDelete = $id;
+        $this->showConfirmDelete = true;
+    }
+
+    public function deleteContact()
+    {
+        if ($this->contactToDelete) {
+            Contact::find($this->contactToDelete)?->delete();
+            $this->contactToDelete = null;
+            $this->showConfirmDelete = false;
+            $this->updateContacts();
+        }
+    }
+
+    public function cancelDelete()
+    {
+        $this->contactToDelete = null;
+        $this->showConfirmDelete = false;
     }
 
     private function updateContacts()

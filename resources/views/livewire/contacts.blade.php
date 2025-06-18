@@ -35,7 +35,7 @@
                                 <button class="btn btn-sm btn-outline-warning" title="Editar">
                                     <i class="fas fa-edit"></i>
                                 </button>
-                                <button class="btn btn-sm btn-outline-danger" title="Deletar">
+                                <button class="btn btn-sm btn-outline-danger" title="Deletar" wire:click="confirmDelete({{ $contact->id }})">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>
@@ -56,5 +56,28 @@
         <div class="text-muted small">
             Total: {{ $contacts->count() }} contato(s)
         </div>
+    @endif
+
+    <!-- Modal de confirmação -->
+    @if($showConfirmDelete)
+        <div class="modal fade show" tabindex="-1" style="display: block; background: rgba(0,0,0,0.5);" aria-modal="true" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirmar exclusão</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>Tem certeza que deseja deletar este contato?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" wire:click="cancelDelete">Cancelar</button>
+                        <button class="btn btn-danger" wire:click="deleteContact">Deletar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style>
+            body { overflow: hidden; }
+        </style>
     @endif
 </div>
