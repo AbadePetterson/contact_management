@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
+use App\Models\Contact;
 
 class FormContact extends Component
 {
@@ -17,7 +18,13 @@ class FormContact extends Component
             'phone' => 'required|min:5|max:50',
         ]);
 
-        Log::info('Novo contato: ' . $this->name . '-' . $this->email . '-' . $this->phone);
+        Contact::firstOrCreate([
+            'name' => $this->name,
+            'email' => $this->email,
+        ], 
+        [
+            'phone' => $this->phone
+        ]);
 
         $this->reset();
     }
