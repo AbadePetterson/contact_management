@@ -11,6 +11,28 @@
         <title>{{ $title ?? 'Page Title' }}</title>
     </head>
     <body>
+        @auth
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <div class="container">
+                    <a class="navbar-brand" href="{{ route('home') }}">
+                        <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" width="30" class="d-inline-block align-text-top me-2">
+                        Sistema de Contatos
+                    </a>
+                    <div class="navbar-nav ms-auto">
+                        <span class="navbar-text me-3">
+                            Olá, {{ Auth::user()->name }}
+                        </span>
+                        <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-light btn-sm">
+                                <i class="fas fa-sign-out-alt"></i> Sair
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        @endauth
+
         {{ $slot }}
 
         <script src="{{ asset('assets/bootstrap/bootstrap.bundle.min.js') }}"></script>

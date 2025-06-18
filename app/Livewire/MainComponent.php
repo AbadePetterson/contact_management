@@ -28,7 +28,7 @@ class MainComponent extends Component
     public function showContactEdit($contactId)
     {
         $this->selectedContactId = $contactId;
-        $this->currentView = 'form';
+        $this->currentView = 'edit';
     }
 
     public function showContactForm()
@@ -45,6 +45,12 @@ class MainComponent extends Component
 
     #[On('contactDeleted')]
     public function contactDeleted()
+    {
+        $this->showContactList();
+    }
+
+    #[On('contactUpdated')]
+    public function contactUpdated()
     {
         $this->showContactList();
     }

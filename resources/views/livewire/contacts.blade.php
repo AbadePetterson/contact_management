@@ -32,7 +32,7 @@
                                 <button wire:click="showContactDetail({{ $contact->id }})" class="btn btn-sm btn-outline-info" title="Ver detalhes">
                                     <i class="fas fa-eye"></i>
                                 </button>
-                                <button class="btn btn-sm btn-outline-warning" title="Editar">
+                                <button wire:click="showContactEdit({{ $contact->id }})" class="btn btn-sm btn-outline-warning" title="Editar">
                                     <i class="fas fa-edit"></i>
                                 </button>
                                 <button class="btn btn-sm btn-outline-danger" title="Deletar" wire:click="confirmDelete({{ $contact->id }})">

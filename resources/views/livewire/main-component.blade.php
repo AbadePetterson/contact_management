@@ -16,6 +16,8 @@
             </div>
         @elseif($currentView === 'detail')
             @livewire('contact-detail', ['contactId' => $selectedContactId, 'onBack' => 'showContactList'])
+        @elseif($currentView === 'edit')
+            @livewire('contact-edit', ['contactId' => $selectedContactId, 'onBack' => 'showContactList'])
         @elseif($currentView === 'form')
             <div class="row justify-content-center">
                 <div class="col-md-8">
