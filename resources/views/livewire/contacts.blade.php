@@ -29,7 +29,7 @@
                         <td>{{ $contact->phone }}</td>
                         <td class="text-center">
                             <div class="btn-group" role="group">
-                                <button class="btn btn-sm btn-outline-info" title="Ver detalhes">
+                                <button wire:click="showContactDetail({{ $contact->id }})" class="btn btn-sm btn-outline-info" title="Ver detalhes">
                                     <i class="fas fa-eye"></i>
                                 </button>
                                 <button class="btn btn-sm btn-outline-warning" title="Editar">

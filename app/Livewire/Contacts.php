@@ -29,6 +29,11 @@ class Contacts extends Component
         $this->updateContacts();
     }
 
+    public function showContactDetail($id)
+    {
+        $this->dispatch('showContactDetail', contactId: $id);
+    }
+
     public function confirmDelete($id)
     {
         $this->contactToDelete = $id;
