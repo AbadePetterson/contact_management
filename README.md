@@ -17,6 +17,7 @@ php artisan key:generate
 # 4. Executar migrações
 php artisan migrate
 
+php artisan db:seed --class=UserSeeder
 # 5. Iniciar servidor
 php artisan serve
 ```
