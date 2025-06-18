@@ -15,9 +15,9 @@ class FormContact extends Component
 
     public function newContact(){
         $this->validate([
-            'name' => 'required|min:5|max:50',
-            'email' => 'required|email|min:5|max:50',
-            'phone' => 'required|min:5|max:50',
+            'name' => 'required|string|min:5',
+            'email' => 'required|email|unique:contacts,email',
+            'phone' => 'required|digits:9|unique:contacts,phone',
         ]);
 
         $result = Contact::firstOrCreate([
