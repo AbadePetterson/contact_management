@@ -10,6 +10,8 @@ class FormContact extends Component
 {
 
     public $name, $email, $phone;
+    public $error = '';
+    public $success = '';
 
     public function newContact(){
         $this->validate([
@@ -18,7 +20,7 @@ class FormContact extends Component
             'phone' => 'required|min:5|max:50',
         ]);
 
-        Contact::firstOrCreate([
+        $result = Contact::firstOrCreate([
             'name' => $this->name,
             'email' => $this->email,
         ], 
@@ -26,7 +28,14 @@ class FormContact extends Component
             'phone' => $this->phone
         ]);
 
-        $this->reset();
+        if($result->wasRecentlyCreated){
+            $this->reset();
+            
+            $this->success = 'Contact created successfully.';
+        }else{
+            $this->error = 'Contact already exists';
+        }
+
     }
 
     public function render()
