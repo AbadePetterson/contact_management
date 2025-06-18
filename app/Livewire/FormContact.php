@@ -18,6 +18,8 @@ class FormContact extends Component
         ]);
 
         Log::info('Novo contato: ' . $this->name . '-' . $this->email . '-' . $this->phone);
+
+        $this->reset();
     }
 
     public function render()
